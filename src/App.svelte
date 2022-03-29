@@ -6,8 +6,11 @@
   export let colors;
 
   let inputColor = "";
+  $: isClickable = inputColor.length == 7 && inputColor.includes("#", 0);
+
   let result = [];
   let resultVisible = false;
+  let isClickable = false;
 
   function calcColors() {
     reset();
@@ -103,26 +106,26 @@
 </script>
 
 <!-- background -->
-<main class="grid place-content-center w-full min-h-screen relative">
+<main class="relative grid min-h-screen w-full place-content-center">
   <!-- front card -->
 
   <div
-    transition:fade
-    class="w-[35rem] h-[20rem] bg-stone-700 rounded relative">
+    class="relative h-[20rem] w-[35rem] overflow-hidden rounded bg-stone-700">
     {#if !resultVisible}
       <div transition:fade class="absolute inset-0">
-        <header class="p-4 h-3/4 flex flex-col justify-center">
+        <header class="flex h-3/4 flex-col justify-center p-4">
           <input
             type="text"
             placeholder="Example: #FF5566"
             bind:value={inputColor}
-            class="rounded px-2 py-4 text-3xl bg-transparent border-2 border-stone-300 w-full focus:outline-none focus:border-red-500 transition" />
+            class="w-full rounded border-2 border-stone-300 bg-transparent px-2 py-4 text-3xl transition focus:border-red-500 focus:outline-none" />
         </header>
 
         <button
-          class="w-full h-1/4 bg-red-600 hover:bg-red-500 flex justify-center items-center space-x-2 transition"
+          class="flex h-1/4 w-full items-center justify-center space-x-2 bg-red-600 transition hover:bg-red-500 disabled:bg-gray-600"
+          disabled={!isClickable}
           on:click={calcColors}>
-          <p class="font-bold text-3xl">Search Color</p>
+          <p class="text-3xl font-bold">Search Color</p>
         </button>
       </div>
     {:else}
