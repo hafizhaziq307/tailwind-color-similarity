@@ -55,9 +55,11 @@
     "windows": [
       {
         "title": "tailwind color similarity",
-        "width": 800,
-        "height": 600,
-        "resizable": true,
+        "width": 700,
+        "height": 500,
+        "minWidth": 700,
+        "minHeight": 500,
+        "resizable": false,
         "fullscreen": false
       }
     ],

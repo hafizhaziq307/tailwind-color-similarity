@@ -21,9 +21,7 @@
       objColor.title = color.title;
       objColor.percentage = compareColors(inputColor, color.hexcode).toFixed(2);
 
-      if (objColor.percentage > 50) {
-        result.push(objColor);
-      }
+      if (objColor.percentage > 50) result.push(objColor);
     }
 
     result.sort((a, b) => b.percentage - a.percentage);
