@@ -1,11 +1,7 @@
 # tailwind-color-similarity
  a dsektop application used to compare the similar color on tailwindcss via using RBG value. Very useful in the situation where to recreate the existing component.
  
-Input
-<img src="./res/input.png" alt="tailwind-color-similarity" >
-
-Output
-<img src="./res/output.png" alt="tailwind-color-similarity" >
+<img src="./res/output.gif" alt="tailwind-color-similarity" width="55%" height="55%">
 
 ---
 
