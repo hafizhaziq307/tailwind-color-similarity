@@ -27,7 +27,7 @@
         class="absolute right-0 z-20 mt-1 w-52 space-y-2 rounded-lg border border-gray-700 bg-gray-800 p-4 text-gray-300 shadow-lg">
         <div class="text-center font-bold">Tailwind Color Similarity</div>
         <div class="bg mx-auto h-1 w-12 rounded-full bg-violet-600" />
-        <div class="text-bold text-center text-gray-300">ver 0.1.0</div>
+        <div class="text-bold text-center text-gray-300">ver 0.1.1</div>
         <div class="text-center text-sm">&copy; 2022 Hafiz Haziq</div>
       </div>
     </ClickOutside>

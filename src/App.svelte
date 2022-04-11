@@ -75,8 +75,8 @@
     {#if isResultVisible}
       <!-- input container -->
       <div
-        in:fly={{ x: 100, duration: 500 }}
-        out:fly={{ x: 100, duration: 500 }}
+        in:fly={{ x: 100, duration: 300 }}
+        out:fly={{ x: 100, duration: 300 }}
         class="absolute left-1/2 mt-14 h-[23rem] w-[40rem] -translate-x-1/2 rounded-lg border border-gray-700 bg-gray-800 shadow-lg">
         <div class="h-full p-8">
           <header class="flex h-3/4 flex-col justify-center">
@@ -110,8 +110,8 @@
     {:else}
       <!-- output container -->
       <div
-        in:fly={{ x: 100, duration: 500 }}
-        out:fly={{ x: 100, duration: 500 }}
+        in:fly={{ x: 100, duration: 300 }}
+        out:fly={{ x: 100, duration: 300 }}
         class="absolute left-1/2 -translate-x-1/2  mt-14 h-[23rem] w-[40rem] rounded-lg border border-gray-700 bg-gray-800 shadow-lg">
         <div class="h-full p-4">
           <!-- header -->
