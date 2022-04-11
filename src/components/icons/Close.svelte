@@ -1,5 +1,5 @@
 <svg
-  class="w-7 h-7"
+  class="h-7 w-7"
   fill="none"
   stroke="currentColor"
   viewBox="0 0 24 24"
