@@ -1,5 +1,9 @@
+<script>
+  export let className;
+</script>
+
 <svg
-  class="h-7 w-7"
+  class={className}
   fill="none"
   stroke="currentColor"
   viewBox="0 0 24 24"

@@ -1,13 +1,14 @@
 <script>
   import ResultCard from "./components/ResultCard.svelte";
   import Close from "./components/icons/Close.svelte";
-  import { fade } from "svelte/transition";
+  import About from "./components/About.svelte";
+  import { fly } from "svelte/transition";
 
   export let colors;
 
   let inputColor = "";
   let result = [];
-  let isResultHidden = true;
+  let isResultVisible = true;
   let isValidate = false;
 
   $: isValidate = /#([\da-fA-F]{2})([\da-fA-F]{2})([\da-fA-F]{2})/g.test(
@@ -28,7 +29,7 @@
     result.sort((a, b) => b.percentage - a.percentage);
     result = result.slice(0, 3);
 
-    isResultHidden = false;
+    isResultVisible = false;
   };
 
   const convertToRGB = (rawHex) => {
@@ -60,44 +61,72 @@
 </script>
 
 <!-- background -->
-<main class="relative grid min-h-screen w-full place-content-center">
-  <!-- front card -->
-  <div
-    class="relative h-[20rem] w-[35rem] overflow-hidden rounded bg-stone-700">
-    {#if isResultHidden}
-      <!-- input container -->
-      <div transition:fade class="absolute inset-0">
-        <header class="flex h-3/4 flex-col justify-center p-4">
-          <input
-            type="text"
-            placeholder="Example: #FF5566"
-            maxlength="7"
-            bind:value={inputColor}
-            class="w-full rounded border-2 border-stone-400 bg-transparent px-2 py-4 text-3xl transition focus:border-red-500 focus:outline-none" />
-        </header>
+<main class="min-h-screen w-full divide-y-2 divide-gray-700 overflow-hidden">
+  <header
+    class="container mx-auto flex w-full items-center justify-between py-2 px-3">
+    <div class="text-2xl font-bold">
+      <p>Tailwind Color Similarity</p>
+      <div class="bg h-1 w-24 rounded-full bg-violet-600" />
+    </div>
+    <About />
+  </header>
 
-        <button
-          class="flex h-1/4 w-full items-center justify-center space-x-2 bg-red-600 transition hover:bg-red-500 disabled:bg-gray-600"
-          disabled={!isValidate}
-          on:click={calcColors}>
-          <p class="text-3xl font-bold">Search Color</p>
-        </button>
+  <div class="relative">
+    {#if isResultVisible}
+      <!-- input container -->
+      <div
+        in:fly={{ x: 100, duration: 500 }}
+        out:fly={{ x: 100, duration: 500 }}
+        class="absolute left-1/2 mt-14 h-[23rem] w-[40rem] -translate-x-1/2 rounded-lg border border-gray-700 bg-gray-800 shadow-lg">
+        <div class="h-full p-8">
+          <header class="flex h-3/4 flex-col justify-center">
+            <div
+              class="flex items-center rounded border-2 border-stone-400 px-3 py-4 transition focus-within:border-violet-600">
+              <input
+                type="text"
+                placeholder="Example: #FF5566"
+                maxlength="7"
+                bind:value={inputColor}
+                class="w-full bg-transparent text-3xl caret-violet-300 placeholder:italic placeholder:text-gray-500 focus:outline-none" />
+
+              <button on:click={() => (inputColor = "")}
+                ><Close
+                  className="w-9 h-9 {inputColor == ''
+                    ? 'hidden'
+                    : 'block'}" /></button>
+            </div>
+          </header>
+
+          <div class=" h-1/4">
+            <button
+              class=" w-full rounded-full bg-violet-600 p-4 transition hover:bg-violet-500 disabled:bg-violet-600/40 disabled:text-gray-200/40"
+              disabled={!isValidate}
+              on:click={calcColors}>
+              <p class="text-3xl font-bold">Search Color</p>
+            </button>
+          </div>
+        </div>
       </div>
     {:else}
       <!-- output container -->
-      <div transition:fade class="absolute inset-0 p-4">
-        <!-- header -->
-        <header class="flex w-full justify-between items-center ">
-          <div class="text-xl font-bold">Similarity Result</div>
-          <button on:click={() => (isResultHidden = true)}>
-            <Close />
-          </button>
-        </header>
+      <div
+        in:fly={{ x: 100, duration: 500 }}
+        out:fly={{ x: 100, duration: 500 }}
+        class="absolute left-1/2 -translate-x-1/2  mt-14 h-[23rem] w-[40rem] rounded-lg border border-gray-700 bg-gray-800 shadow-lg">
+        <div class="h-full p-4">
+          <!-- header -->
+          <header class="flex w-full justify-between items-center ">
+            <div class="text-2xl font-bold">Result</div>
+            <button on:click={() => (isResultVisible = true)}>
+              <Close className="w-9 h-9" />
+            </button>
+          </header>
 
-        <div class="space-y-6 mt-10">
-          {#each result as color, index}
-            <ResultCard {index} {color} />
-          {/each}
+          <div class="space-y-10 mt-8">
+            {#each result as color, index}
+              <ResultCard {index} {color} />
+            {/each}
+          </div>
         </div>
       </div>
     {/if}
