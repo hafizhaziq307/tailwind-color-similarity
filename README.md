@@ -1,7 +1,7 @@
 # tailwind-color-similarity
 A desktop application used to compare the similar color on tailwindcss via using RBG value. Very useful in the situation where to recreate the existing component.
  
-<img src="./res/output.gif" alt="tailwind-color-similarity" width="55%" height="55%">
+<img src="./res/output.gif" alt="tailwind-color-similarity" width="65%%" height="65%">
 
 ---
 
